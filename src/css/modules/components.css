@@ -1,0 +1,10 @@
+.header-container {
+  border-bottom: 2px solid gray;
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.2);
+  background-color: #0c5a9e;
+}
+
+.sidebar-component {
+    background-color: #1e293b;
+    color: #fff;
+}

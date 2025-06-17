@@ -1,0 +1,11 @@
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #222;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+}
