@@ -10,7 +10,7 @@ function Header() {
               src="/favicon.ico"
               alt="Logo"
               height="24"
-              className="d-inline-block align-text-top header-logo me-4"
+              className="d-inline-block align-text-top header-logo me-4 transform-scale-2"
             ></img>
             <h2 className="d-inline-block fw-bold text-airbnb text-white">MentorIA</h2>
           </Link>
@@ -29,7 +29,7 @@ function Header() {
 
           <div className="collapse navbar-collapse" id="navbar">
             <div className="navbar-nav me-auto">
-              <Link className="nav-link fw-bold text-white" to="/">
+              <Link className="nav-link fw-bold text-white" to="/home">
                 Home
               </Link>
               <Link className="nav-link fw-bold text-white" to="/items">

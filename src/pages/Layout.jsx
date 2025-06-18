@@ -9,7 +9,7 @@ function Layout() {
       <div className="container-fluid flex-grow-1 bg-secondary p-0 d-flex">
         <div className="row g-0 flex-grow-1">
           <SideBar className="col-1 d-flex" />
-          <main className="col bg-light p-4">
+          <main className="col bg-light">
             <Outlet />
           </main>
         </div>
