@@ -1,12 +1,13 @@
 import courseService from "../api/courseService";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function HomePage() {
-  const [courses, seetCourses] = useState([]);
+  const [courses, setCourses] = useState([]);
 
   const fetchCourses = async () => {
     const data = await courseService.getAll();
-    seetCourses(data);
+    setCourses(data);
   };
 
   useEffect(() => {
@@ -21,8 +22,10 @@ function HomePage() {
         <ul className="list-group">
           {courses.map((course) => (
             <li key={course.id} className="list-group-item">
-              ID: {course.id} - Materia: {course.subject?.name || "Sin nombre"}{" "}
+              <Link to={`/courses/${course.id}`}>
+                ID: {course.id} - Materia: {course.subject?.name || "Sin nombre"}{" "}
               - Profesor: {course.professor?.username || "Sin nombre"}
+              </Link>
             </li>
           ))}
         </ul>
