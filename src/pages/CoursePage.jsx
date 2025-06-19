@@ -4,23 +4,23 @@ import { useParams } from "react-router-dom";
 import CourseSidebar from "../components/CourseSidebar";
 
 function CoursePage() {
-  const { id } = useParams();
+  const { courseId } = useParams();
   const [course, setCourse] = useState(null);
 
   useEffect(() => {
     const fetchCourse = async () => {
-      const data = await courseService.show(id);
+      const data = await courseService.show(courseId);
       setCourse(data);
     };
     fetchCourse();
-  }, [id]);
+  }, [courseId]);
 
   if (!course) return <p>Cargando curso...</p>;
 
   return (
     <div className="container-fluid h-100">
       <div className="row h-100">
-        <CourseSidebar />
+        <CourseSidebar courseId={courseId}/>
         <section className="col-md-10 p-3">
           <h2>Detalle del Curso</h2>
           <ul className="list-group">

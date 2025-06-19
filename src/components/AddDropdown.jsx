@@ -1,11 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-function AddDropdown() {
-  const { id } = useParams();
+function AddDropdown({courseId}) {
   const navigate = useNavigate();
 
   const handleCreate = (type) => {
-    navigate(`/courses/${id}/new${type}`);
+    navigate(`/courses/${courseId}/${type}s/form`);
   };
 
   return (
@@ -21,27 +20,27 @@ function AddDropdown() {
       </button>
       <ul className="dropdown-menu" aria-labelledby="addDropdown">
         <li>
-          <button className="dropdown-item" onClick={() => handleCreate("Module")}>
+          <button className="dropdown-item" onClick={() => handleCreate("module")}>
             Módulo
           </button>
         </li>
         <li>
-          <button className="dropdown-item" onClick={() => handleCreate("Material")}>
+          <button className="dropdown-item" onClick={() => handleCreate("material")}>
             Material
           </button>
         </li>
         <li>
-          <button className="dropdown-item" onClick={() => handleCreate("Task")}>
+          <button className="dropdown-item" onClick={() => handleCreate("task")}>
             Tarea
           </button>
         </li>
         <li>
-          <button className="dropdown-item" onClick={() => handleCreate("Evaluation")}>
+          <button className="dropdown-item" onClick={() => handleCreate("evaluation")}>
             Evaluación
           </button>
         </li>
         <li>
-          <button className="dropdown-item" onClick={() => handleCreate("Forum")}>
+          <button className="dropdown-item" onClick={() => handleCreate("forum")}>
             Foro
           </button>
         </li>

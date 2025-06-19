@@ -1,7 +1,7 @@
 import { NavLink, useParams } from "react-router-dom";
 
-function CourseSidebar() {
-  const { id } = useParams();
+function CourseSidebar({courseId}) {
+  const id = courseId;
 
   return (
     <aside className="col-md-2 p-0">

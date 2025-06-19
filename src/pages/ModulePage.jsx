@@ -6,31 +6,31 @@ import ModuleAccordionList from "../components/ModuleAccordionList";
 import AddDropdown from "../components/AddDropdown";
 
 function ModulePage() {
-  const { id } = useParams();
+  const { courseId } = useParams();
   const [course, setCourse] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const courseData = await courseService.show(id);
+      const courseData = await courseService.show(courseId);
       setCourse(courseData);
     };
 
     fetchData();
-  }, [id]);
+  }, [courseId]);
 
   if (!course) return <p>Cargando curso...</p>;
 
   return (
     <div className="container-fluid h-100">
       <div className="row h-100">
-        <CourseSidebar />
+        <CourseSidebar courseId={courseId}/>
         <section className="col-md-10 p-3">
           <div className="d-flex justify-content-between align-items-center mb-4">
             <h2 className="m-0">Módulos del Curso</h2>
-            <AddDropdown />
+            <AddDropdown courseId={courseId}/>
           </div>
 
-          <ModuleAccordionList courseId={id} />
+          <ModuleAccordionList courseId={courseId} />
         </section>
       </div>
     </div>

@@ -9,26 +9,26 @@ function ModuleAccordionList({ courseId }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchModulesAndMaterials = async () => {
-      try {
-        const allModules = await moduleService.getAll();
-        const courseModules = allModules.filter(
-          (mod) => mod.course.id === parseInt(courseId)
-        );
+  const fetchModulesAndMaterials = async () => {
+    try {
+      const allModules = await moduleService.getAll();
+      const courseModules = allModules
+        .filter((mod) => mod.course.id === parseInt(courseId))
+        .sort((a, b) => a.moduleOrder - b.moduleOrder); // 👈 aquí
 
-        const allMaterials = await materialService.getAll();
+      const allMaterials = await materialService.getAll();
 
-        setModules(courseModules);
-        setMaterials(allMaterials);
-      } catch (error) {
-        console.error("Error al cargar módulos o materiales", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+      setModules(courseModules);
+      setMaterials(allMaterials);
+    } catch (error) {
+      console.error("Error al cargar módulos o materiales", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchModulesAndMaterials();
-  }, [courseId]);
+  fetchModulesAndMaterials();
+}, [courseId]);
 
   if (loading) return <p>Cargando módulos...</p>;
 
@@ -41,6 +41,7 @@ function ModuleAccordionList({ courseId }) {
       {modules.map((mod, index) => (
         <ModuleAccordionItem
           key={mod.id}
+          course={courseId}
           module={mod}
           materials={materials.filter((mat) => mat.module.id === mod.id)}
           index={index}
