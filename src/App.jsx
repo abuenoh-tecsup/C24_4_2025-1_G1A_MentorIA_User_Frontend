@@ -8,6 +8,10 @@ import MaterialPage from './pages/MaterialPage'
 import TaskPage from './pages/TaskPage'
 import EvaluationPage from './pages/EvaluationPage'
 import ForumPage from './pages/ForumPage'
+import MaterialFormPage from './pages/MaterialFormPage'
+import EvaluationFormPage from './pages/EvaluationFormPage'
+import ForumFormPage from './pages/ForumFormPage'
+import TaskFormPage from './pages/TaskFormPage'
 
 
 function App() {
@@ -25,6 +29,10 @@ function App() {
         <Route path="courses/:courseId/forums" element={<ForumPage/>}/>
 
         <Route path="/courses/:courseId/modules/form" element={<ModuleFormPage />} />
+        <Route path="/courses/:courseId/materials/form" element={<MaterialFormPage/>} />
+        <Route path="/courses/:courseId/evaluations/form" element={<EvaluationFormPage/>} />
+        <Route path="/courses/:courseId/forums/form" element={<ForumFormPage/>} />
+        <Route path="/courses/:courseId/tasks/form" element={<TaskFormPage/>} />
       </Route>
     </Routes>
   )
