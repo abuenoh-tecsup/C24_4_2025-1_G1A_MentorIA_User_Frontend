@@ -1,0 +1,68 @@
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import evaluationService from "../api/evaluationService";
+import CourseSidebar from "../components/CourseSidebar";
+
+function EvaluationDetailPage() {
+  const { courseId, evaluationId } = useParams();
+  const navigate = useNavigate();
+  const [evaluation, setEvaluation] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    evaluationService
+      .show(evaluationId)
+      .then(setEvaluation)
+      .finally(() => setLoading(false));
+  }, [evaluationId]);
+
+  if (loading) return <p className="p-3">Cargando evaluación...</p>;
+  if (!evaluation) return <p className="p-3">Evaluación no encontrada</p>;
+
+  return (
+    <div className="container-fluid h-100">
+      <div className="row h-100">
+        <CourseSidebar courseId={courseId} />
+
+        <section className="col-md-10 p-4">
+          <h3 className="mb-4">{evaluation.title}</h3>
+
+          <div className="mb-3">
+            <strong>Descripción:</strong>
+            <p>{evaluation.description}</p>
+          </div>
+
+          <div className="mb-3">
+            <strong>Fecha de inicio:</strong>{" "}
+            {new Date(evaluation.startDate).toLocaleString()}
+          </div>
+
+          <div className="mb-3">
+            <strong>Fecha de fin:</strong>{" "}
+            {new Date(evaluation.endDate).toLocaleString()}
+          </div>
+
+          <div className="mb-3">
+            <strong>Límite de tiempo:</strong> {evaluation.timeLimit} minutos
+          </div>
+
+          <div className="mt-4">
+            <button className="btn btn-secondary me-2" onClick={() => navigate(-1)}>
+              Volver
+            </button>
+            <button
+              className="btn btn-primary"
+              onClick={() =>
+                navigate(`/courses/${courseId}/evaluations/form?evaluationId=${evaluationId}`)
+              }
+            >
+              Editar
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}
+
+export default EvaluationDetailPage;
