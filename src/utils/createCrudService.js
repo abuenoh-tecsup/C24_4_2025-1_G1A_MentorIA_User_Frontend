@@ -3,14 +3,8 @@ import axios from "axios";
 export function createCrudService(baseUrl) {
   return {
     getAll: async () => {
-      try {
-        const response = await axios.get(baseUrl);
-        return response.data;
-      } catch (error) {
-        console.error(`Error al obtener todos desde ${baseUrl}`, error);
-        //throw error;
-        return [];
-      }
+      const response = await axios.get(baseUrl);
+      return response.data;
     },
 
     create: async (data) => {
@@ -18,9 +12,8 @@ export function createCrudService(baseUrl) {
         const response = await axios.post(baseUrl, data);
         return response.data;
       } catch (error) {
-        console.error(`Error al crear en ${baseUrl}`, error);
-        //throw error;
-        return [];
+        const message = error.response?.data?.message || "Error al crear";
+        throw new Error(message);
       }
     },
 
@@ -29,12 +22,8 @@ export function createCrudService(baseUrl) {
         const response = await axios.get(`${baseUrl}/${id}`);
         return response.data;
       } catch (error) {
-        console.error(
-          `Error al obtener el recurso ${id} desde ${baseUrl}`,
-          error
-        );
-        //throw error;
-        return [];
+        const message = error.response?.data?.message || "Error al obtener";
+        throw new Error(message);
       }
     },
 
@@ -43,12 +32,8 @@ export function createCrudService(baseUrl) {
         const response = await axios.put(`${baseUrl}/${id}`, data);
         return response.data;
       } catch (error) {
-        console.error(
-          `Error al actualizar el recurso ${id} en ${baseUrl}`,
-          error
-        );
-        //throw error;
-        return [];
+        const message = error.response?.data?.message || "Error al actualizar";
+        throw new Error(message);
       }
     },
 
@@ -57,12 +42,8 @@ export function createCrudService(baseUrl) {
         const response = await axios.delete(`${baseUrl}/${id}`);
         return response.data;
       } catch (error) {
-        console.error(
-          `Error al eliminar el recurso ${id} desde ${baseUrl}`,
-          error
-        );
-        //throw error;
-        return [];
+        const message = error.response?.data?.message || "Error al eliminar";
+        throw new Error(message);
       }
     },
   };
