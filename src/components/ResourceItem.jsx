@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function ResourceItem({ resource, type, editPath }) {
+function ResourceItem({ resource, type, editPath, detailPath }) {
   return (
     <div className="card mb-3">
       <div className="card-body">
@@ -18,12 +18,15 @@ function ResourceItem({ resource, type, editPath }) {
           </a>
         )}
 
-        <Link
-          to={editPath}
-          className="btn btn-sm btn-outline-primary"
-        >
-          Editar
-        </Link>
+        <div className="mt-2">
+          <Link to={detailPath} className="btn btn-sm btn-outline-info me-2">
+            Ver detalle
+          </Link>
+
+          <Link to={editPath} className="btn btn-sm btn-outline-primary">
+            Editar
+          </Link>
+        </div>
       </div>
     </div>
   );

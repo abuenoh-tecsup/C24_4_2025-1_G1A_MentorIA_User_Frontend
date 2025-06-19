@@ -13,6 +13,7 @@ function ResourceList({ items = [], courseId, resourceType }) {
           resource={item}
           type={resourceType}
           editPath={`/courses/${courseId}/${resourceType}s/form?${resourceType}Id=${item.id}`}
+          detailPath={`/courses/${courseId}/${resourceType}s/${item.id}`}
         />
       ))}
     </div>
