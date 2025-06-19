@@ -24,6 +24,14 @@ function CourseSidebar({courseId}) {
           Módulos
         </NavLink>
         <NavLink
+          to={`/courses/${id}/materials`}
+          className={({ isActive }) =>
+            `list-group-item list-group-item-action ${isActive ? "active" : ""}`
+          }
+        >
+          Materiales
+        </NavLink>
+        <NavLink
           to={`/courses/${id}/tasks`}
           className={({ isActive }) =>
             `list-group-item list-group-item-action ${isActive ? "active" : ""}`

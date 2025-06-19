@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import moduleService from "../api/moduleService";
+import CourseSidebar from "../components/CourseSidebar";
 
 function ModuleFormPage() {
   const { courseId } = useParams();
@@ -60,67 +61,71 @@ function ModuleFormPage() {
   if (loading) return <p className="p-3">Cargando módulo...</p>;
 
   return (
-    <div className="container mt-4">
-        
-      <h3>{isEditing ? "Editar Módulo" : "Nuevo Módulo"}</h3>
+    <div className="container-fluid h-100">
+      <div className="row h-100">
+        <CourseSidebar courseId={courseId} />
 
-      {errors.root && (
-        <div className="alert alert-danger">{errors.root.message}</div>
-      )}
+        <section className="col-md-10 p-4">
+          <h3>{isEditing ? "Editar Módulo" : "Nuevo Módulo"}</h3>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="mt-3">
-
-        <div className="mb-3">
-          <label className="form-label">Título</label>
-          <input
-            className="form-control"
-            {...register("title", { required: "Título obligatorio" })}
-          />
-          {errors.title && (
-            <div className="text-danger">{errors.title.message}</div>
+          {errors.root && (
+            <div className="alert alert-danger">{errors.root.message}</div>
           )}
-        </div>
 
-        <div className="mb-3">
-          <label className="form-label">Descripción</label>
-          <textarea
-            className="form-control"
-            rows={3}
-            {...register("description", {
-              required: "Descripción obligatoria",
-            })}
-          />
-          {errors.description && (
-            <div className="text-danger">{errors.description.message}</div>
-          )}
-        </div>
+          <form onSubmit={handleSubmit(onSubmit)} className="mt-3">
+            <div className="mb-3">
+              <label className="form-label">Título</label>
+              <input
+                className="form-control"
+                {...register("title", { required: "Título obligatorio" })}
+              />
+              {errors.title && (
+                <div className="text-danger">{errors.title.message}</div>
+              )}
+            </div>
 
-        <div className="mb-3">
-          <label className="form-label">Orden</label>
-          <input
-            type="number"
-            className="form-control"
-            {...register("moduleOrder", {
-              required: "Orden obligatorio",
-              min: { value: 1, message: "Debe ser mayor que 0" },
-            })}
-          />
-          {errors.moduleOrder && (
-            <div className="text-danger">{errors.moduleOrder.message}</div>
-          )}
-        </div>
+            <div className="mb-3">
+              <label className="form-label">Descripción</label>
+              <textarea
+                className="form-control"
+                rows={3}
+                {...register("description", {
+                  required: "Descripción obligatoria",
+                })}
+              />
+              {errors.description && (
+                <div className="text-danger">{errors.description.message}</div>
+              )}
+            </div>
 
-        <button className="btn btn-primary" disabled={isSubmitting}>
-          {isSubmitting ? "Guardando..." : "Guardar"}
-        </button>
-        <button
-          type="button"
-          className="btn btn-secondary ms-2"
-          onClick={() => navigate(-1)}
-        >
-          Cancelar
-        </button>
-      </form>
+            <div className="mb-3">
+              <label className="form-label">Orden</label>
+              <input
+                type="number"
+                className="form-control"
+                {...register("moduleOrder", {
+                  required: "Orden obligatorio",
+                  min: { value: 1, message: "Debe ser mayor que 0" },
+                })}
+              />
+              {errors.moduleOrder && (
+                <div className="text-danger">{errors.moduleOrder.message}</div>
+              )}
+            </div>
+
+            <button className="btn btn-primary" disabled={isSubmitting}>
+              {isSubmitting ? "Guardando..." : "Guardar"}
+            </button>
+            <button
+              type="button"
+              className="btn btn-secondary ms-2"
+              onClick={() => navigate(-1)}
+            >
+              Cancelar
+            </button>
+          </form>
+        </section>
+      </div>
     </div>
   );
 }
