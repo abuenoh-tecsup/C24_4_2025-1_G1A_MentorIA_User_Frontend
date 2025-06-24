@@ -16,12 +16,16 @@ import MaterialDetailPage from "./pages/MaterialDetailPage";
 import EvaluationDetailPage from "./pages/EvaluationDetailPage";
 import ForumDetailPage from "./pages/ForumDetailPage";
 import TaskDetailPage from "./pages/TaskDetailPage";
+import SubmissionDetailPage from "./pages/SubmissionDetailPage";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route path="home" element={<HomePage />} />
+
+        <Route path="submissions/:submissionId" element={<SubmissionDetailPage />} />
+
         <Route path="courses/:courseId" element={<CoursePage />} />
 
         <Route path="courses/:courseId/modules">
