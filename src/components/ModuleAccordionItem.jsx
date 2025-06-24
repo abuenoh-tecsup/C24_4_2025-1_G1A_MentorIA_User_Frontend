@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ModuleResourceList from "./ModuleResourceList";
 
 function ModuleAccordionItem({
   module,
@@ -50,79 +51,32 @@ function ModuleAccordionItem({
         data-bs-parent="#modulesAccordion"
       >
         <div className="accordion-body">
+          <ModuleResourceList
+            title="Materiales"
+            items={materials}
+            route="materials"
+            courseId={course}
+          />
+          <ModuleResourceList
+            title="Evaluaciones"
+            items={evaluations}
+            route="evaluations"
+            courseId={course}
+          />
+          <ModuleResourceList
+            title="Foros"
+            items={forums}
+            route="forums"
+            courseId={course}
+          />
+          <ModuleResourceList
+            title="Tareas"
+            items={tasks}
+            route="tasks"
+            courseId={course}
+          />
 
-          {materials.length > 0 && (
-            <>
-              <h6>Materiales</h6>
-              <ul className="list-group mb-3">
-                {materials.map((mat) => (
-                  <li key={mat.id} className="list-group-item">
-                    <strong>{mat.title}</strong> <br />
-                    <span>{mat.description}</span> <br />
-                    <a
-                      href={mat.resourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Ver recurso
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-
-          {evaluations.length > 0 && (
-            <>
-              <h6>Evaluaciones</h6>
-              <ul className="list-group mb-3">
-                {evaluations.map((ev) => (
-                  <li key={ev.id} className="list-group-item">
-                    <strong>{ev.title}</strong> <br />
-                    <span>{ev.description}</span> <br />
-                    Inicio: {new Date(ev.startDate).toLocaleString()} <br />
-                    Fin: {new Date(ev.endDate).toLocaleString()} <br />
-                    Límite de tiempo: {ev.timeLimit} minutos
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-
-          {forums.length > 0 && (
-            <>
-              <h6>Foros</h6>
-              <ul className="list-group mb-3">
-                {forums.map((f) => (
-                  <li key={f.id} className="list-group-item">
-                    <strong>{f.title}</strong> <br />
-                    <span>{f.description}</span> <br />
-                    Autor: {f.author.firstName} {f.author.lastName} ({f.author.role})
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-
-          {tasks.length > 0 && (
-            <>
-              <h6>Tareas</h6>
-              <ul className="list-group mb-3">
-                {tasks.map((t) => (
-                  <li key={t.id} className="list-group-item">
-                    <strong>{t.title}</strong> <br />
-                    <span>{t.description}</span> <br />
-                    Publicación: {new Date(t.publicationDate).toLocaleString()} <br />
-                    Entrega: {new Date(t.dueDate).toLocaleString()}
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-
-          {isEmpty && (
-            <p className="text-muted">Este módulo está vacío.</p>
-          )}
+          {isEmpty && <p className="text-muted">Este módulo está vacío.</p>}
         </div>
       </div>
     </div>
