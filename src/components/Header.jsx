@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <header className="container-fluid header-container sticky-top ">
+    <header className="header-container">
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
@@ -10,9 +10,9 @@ function Header() {
               src="/favicon.ico"
               alt="Logo"
               height="24"
-              className="d-inline-block align-text-top header-logo me-4 transform-scale-2"
-            ></img>
-            <h2 className="d-inline-block fw-bold text-airbnb text-white">MentorIA</h2>
+              className="header-logo me-3 transform-scale-2"
+            />
+            <h2 className="header-title d-inline-block">MentorIA</h2>
           </Link>
 
           <button
@@ -28,15 +28,15 @@ function Header() {
           </button>
 
           <div className="collapse navbar-collapse" id="navbar">
-            <div className="navbar-nav me-auto">
-              <Link className="nav-link fw-bold text-white" to="/home">
-                Home
+            <div className="navbar-nav ms-auto">
+              <Link className="nav-link" to="/home">
+                🏠 Home
               </Link>
-              <Link className="nav-link fw-bold text-white" to="/items">
-                Items
+              <Link className="nav-link" to="/items">
+                📋 Items
               </Link>
-              <Link className="nav-link fw-bold text-white" to="/contact">
-                Contact
+              <Link className="nav-link" to="/contact">
+                📞 Contact
               </Link>
             </div>
           </div>
