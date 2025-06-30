@@ -1,6 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthStore } from "../store/auth.store";
 
 function Header() {
+  const { token, logout, username } = useAuthStore();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
     <header className="header-container">
       <nav className="navbar navbar-expand-lg">
@@ -38,6 +47,22 @@ function Header() {
               <Link className="nav-link" to="/contact">
                 📞 Contact
               </Link>
+
+              {token ? (
+                <>
+                  <span className="nav-link disabled">👤 {username}</span>
+                  <button
+                    className="nav-link btn btn-link"
+                    onClick={handleLogout}
+                  >
+                    🔓 Logout
+                  </button>
+                </>
+              ) : (
+                <Link className="nav-link" to="/login">
+                  🔐 Login
+                </Link>
+              )}
             </div>
           </div>
         </div>

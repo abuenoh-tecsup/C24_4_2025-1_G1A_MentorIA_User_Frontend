@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { login } from "../services/login.service";
+import { useNavigate } from "react-router-dom"; // 👈 importar
+import { login } from "../api/login.service";
 import { useAuthStore } from "../store/auth.store";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { login: setAuth } = useAuthStore();
+  const navigate = useNavigate(); // 👈 instancia para redirección
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const data = await login({ username, password });
-      setAuth(data); // guarda en zustand + localStorage
+      setAuth(data); // guarda token, username, etc.
+      navigate("/home"); // 👈 redirigir a /home
     } catch (error) {
       alert("Login incorrecto");
       console.error(error);

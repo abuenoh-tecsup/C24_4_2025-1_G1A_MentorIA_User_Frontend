@@ -21,7 +21,7 @@ function SideBar({ className = "" }) {
                 <ul className={`sidebar-menu ${isOpen ? 'open' : ''}`}>
                     <li className="sidebar-item">
                         <Link 
-                            to="/" 
+                            to="/home" 
                             className={`sidebar-link ${location.pathname === '/' ? 'active' : ''}`}
                         >
                             <span className="sidebar-text">Inicio</span>
@@ -54,7 +54,7 @@ function SideBar({ className = "" }) {
                 </ul>
             </nav>
             <div className="sidebar-footer">
-                <p>&copy; {new Date().getFullYear()} Mi Aplicación</p>
+                <p>&copy; {new Date().getFullYear()} MentorIA</p>
             </div>
         </aside>
     );

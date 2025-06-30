@@ -1,5 +1,5 @@
 import { createCrudService } from "../utils/createCrudService";
-import axiosInstance from "./axiosInstance";
+import axiosInstance from "../utils/axiosInstance";
 
 const BASE_URL = "/submissions";
 
