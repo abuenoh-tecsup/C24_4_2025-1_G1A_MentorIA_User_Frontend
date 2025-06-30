@@ -6,9 +6,9 @@ import CourseSidebar from "../components/CourseSidebar";
 import SubmissionForm from "../components/SubmissionForm";
 import { SubmissionDetails } from "../components/SubmissionDetails";
 
-// Simulación temporal
+
 const USER_ID = 1;
-const USER_ROLE = "professor"; // o "student"
+const USER_ROLE = "professor";
 
 function TaskDetailPage() {
   const { courseId, taskId } = useParams();

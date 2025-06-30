@@ -1,15 +1,15 @@
-import axios from "axios";
+import axiosInstance from "./axiosInstance";
 
 export function createCrudService(baseUrl) {
   return {
     getAll: async () => {
-      const response = await axios.get(baseUrl);
+      const response = await axiosInstance.get(baseUrl);
       return response.data;
     },
 
     create: async (data) => {
       try {
-        const response = await axios.post(baseUrl, data);
+        const response = await axiosInstance.post(baseUrl, data);
         return response.data;
       } catch (error) {
         const message = error.response?.data?.message || "Error al crear";
@@ -19,7 +19,7 @@ export function createCrudService(baseUrl) {
 
     show: async (id) => {
       try {
-        const response = await axios.get(`${baseUrl}/${id}`);
+        const response = await axiosInstance.get(`${baseUrl}/${id}`);
         return response.data;
       } catch (error) {
         const message = error.response?.data?.message || "Error al obtener";
@@ -29,7 +29,7 @@ export function createCrudService(baseUrl) {
 
     update: async (id, data) => {
       try {
-        const response = await axios.put(`${baseUrl}/${id}`, data);
+        const response = await axiosInstance.put(`${baseUrl}/${id}`, data);
         return response.data;
       } catch (error) {
         const message = error.response?.data?.message || "Error al actualizar";
@@ -39,7 +39,7 @@ export function createCrudService(baseUrl) {
 
     remove: async (id) => {
       try {
-        const response = await axios.delete(`${baseUrl}/${id}`);
+        const response = await axiosInstance.delete(`${baseUrl}/${id}`);
         return response.data;
       } catch (error) {
         const message = error.response?.data?.message || "Error al eliminar";

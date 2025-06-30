@@ -1,6 +1,6 @@
 import { createCrudService } from "../utils/createCrudService";
 
-const BASE_URL = "http://localhost:8080/api/tasks";
+const BASE_URL = "/tasks";
 
 const taskService = {
   ...createCrudService(BASE_URL),

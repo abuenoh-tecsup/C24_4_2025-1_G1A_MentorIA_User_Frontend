@@ -1,14 +1,14 @@
-import axios from "axios";
 import { createCrudService } from "../utils/createCrudService";
+import axiosInstance from "./axiosInstance";
 
-const BASE_URL = "http://localhost:8080/api/submissions";
+const BASE_URL = "/submissions";
 
 const submissionService = {
   ...createCrudService(BASE_URL),
 
   getByTask: async (taskId) => {
     try {
-      const response = await axios.get(`${BASE_URL}/task/${taskId}`);
+      const response = await axiosInstance.get(`${BASE_URL}/task/${taskId}`);
       return response.data;
     } catch (error) {
       const message = error.response?.data?.message || "Error al obtener entregas por tarea";
@@ -18,13 +18,13 @@ const submissionService = {
 
   getByUser: async (userId) => {
     try {
-      const response = await axios.get(`${BASE_URL}/user/${userId}`);
+      const response = await axiosInstance.get(`${BASE_URL}/user/${userId}`);
       return response.data;
     } catch (error) {
       const message = error.response?.data?.message || "Error al obtener entregas por usuario";
       throw new Error(message);
     }
-  }
+  },
 };
 
 export default submissionService;
