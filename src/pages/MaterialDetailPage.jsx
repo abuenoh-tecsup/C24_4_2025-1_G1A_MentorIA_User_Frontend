@@ -30,6 +30,8 @@ function MaterialDetailPage() {
         <section className="col-md-10 p-4">
           <h3 className="mb-4">{material.title}</h3>
 
+          
+
           <div className="mb-3">
             <strong>Descripción:</strong>
             <p>{material.description}</p>

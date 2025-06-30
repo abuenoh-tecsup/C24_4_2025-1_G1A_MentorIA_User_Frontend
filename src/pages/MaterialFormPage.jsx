@@ -23,7 +23,6 @@ function MaterialFormPage() {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  // Cargar módulos del curso
   useEffect(() => {
     const fetchModules = async () => {
       const allModules = await moduleService.getAll();
@@ -36,7 +35,6 @@ function MaterialFormPage() {
     fetchModules();
   }, [courseId]);
 
-  // Cargar material si está en modo edición
   useEffect(() => {
     if (isEditing) {
       setLoading(true);
@@ -46,7 +44,6 @@ function MaterialFormPage() {
           setValue("title", data.title);
           setValue("description", data.description);
           setValue("type", data.type);
-          setValue("resourceUrl", data.resourceUrl);
           setValue("moduleId", data.module.id);
         })
         .finally(() => setLoading(false));
@@ -55,15 +52,25 @@ function MaterialFormPage() {
 
   const onSubmit = async (data) => {
     try {
-      const payload = {
-        ...data,
-        moduleId: Number(data.moduleId),
-      };
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("description", data.description);
+      formData.append("type", data.type);
+      formData.append("moduleId", data.moduleId);
+
+      if (!isEditing && data.file[0]) {
+        formData.append("file", data.file[0]);
+      }
 
       if (isEditing) {
-        await materialService.update(materialId, payload);
+        await materialService.update(materialId, {
+          title: data.title,
+          description: data.description,
+          type: data.type,
+          moduleId: Number(data.moduleId),
+        });
       } else {
-        await materialService.create(payload);
+        await materialService.create(formData);
       }
 
       navigate(`/courses/${courseId}/materials`);
@@ -133,18 +140,19 @@ function MaterialFormPage() {
               )}
             </div>
 
-            <div className="mb-3">
-              <label className="form-label">URL del recurso</label>
-              <input
-                className="form-control"
-                {...register("resourceUrl", {
-                  required: "URL obligatoria",
-                })}
-              />
-              {errors.resourceUrl && (
-                <div className="text-danger">{errors.resourceUrl.message}</div>
-              )}
-            </div>
+            {!isEditing && (
+              <div className="mb-3">
+                <label className="form-label">Archivo</label>
+                <input
+                  type="file"
+                  className="form-control"
+                  {...register("file", { required: "Archivo obligatorio" })}
+                />
+                {errors.file && (
+                  <div className="text-danger">{errors.file.message}</div>
+                )}
+              </div>
+            )}
 
             <div className="mb-3">
               <label className="form-label">Módulo</label>
@@ -174,6 +182,27 @@ function MaterialFormPage() {
             >
               Cancelar
             </button>
+            {isEditing && (
+              <button
+                type="button"
+                className="btn btn-danger ms-2"
+                onClick={async () => {
+                  const confirmed = window.confirm(
+                    "¿Seguro que deseas eliminar este material?"
+                  );
+                  if (confirmed) {
+                    try {
+                      await materialService.remove(materialId);
+                      navigate(`/courses/${courseId}/materials`);
+                    } catch (error) {
+                      alert("Error al eliminar: " + error.message);
+                    }
+                  }
+                }}
+              >
+                Eliminar
+              </button>
+            )}
           </form>
         </section>
       </div>
