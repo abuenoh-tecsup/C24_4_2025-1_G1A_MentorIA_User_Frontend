@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import forumService from "../api/forumService";
 import commentService from "../api/commentService";
 import CourseSidebar from "../components/CourseSidebar";
-
-// Simulación temporal
-const USER_ID = 1;
+import { useAuthStore } from "../store/auth.store";
 
 function ForumDetailPage() {
+  const user = useAuthStore((state) => state.user);
+
   const { courseId, forumId } = useParams();
   const navigate = useNavigate();
 
@@ -42,7 +42,7 @@ function ForumDetailPage() {
       await commentService.create({
         content: commentText,
         forumId: parseInt(forumId),
-        userId: USER_ID,
+        userId: user?.id,
         creationDate: new Date().toISOString(),
       });
 
@@ -69,17 +69,24 @@ function ForumDetailPage() {
           <header className="d-flex justify-content-between align-items-center mb-4">
             <h3 className="mb-0">{forum.title}</h3>
             <div>
-              <button className="btn btn-secondary me-2" onClick={() => navigate(-1)}>
+              <button
+                className="btn btn-secondary me-2"
+                onClick={() => navigate(-1)}
+              >
                 Volver
               </button>
-              <button
-                className="btn btn-primary"
-                onClick={() =>
-                  navigate(`/courses/${courseId}/forums/form?forumId=${forumId}`)
-                }
-              >
-                Editar
-              </button>
+              {user?.role === "professor" && (
+                <button
+                  className="btn btn-primary"
+                  onClick={() =>
+                    navigate(
+                      `/courses/${courseId}/forums/form?forumId=${forumId}`
+                    )
+                  }
+                >
+                  Editar
+                </button>
+              )}
             </div>
           </header>
 
@@ -129,7 +136,10 @@ function ForumDetailPage() {
                   onChange={(e) => setCommentText(e.target.value)}
                   placeholder="Escribe tu respuesta..."
                 />
-                <button className="btn btn-primary" onClick={handleSubmitComment}>
+                <button
+                  className="btn btn-primary"
+                  onClick={handleSubmitComment}
+                >
                   Enviar comentario
                 </button>
               </div>

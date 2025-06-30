@@ -2,8 +2,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import materialService from "../api/materialService";
 import CourseSidebar from "../components/CourseSidebar";
+import { useAuthStore } from "../store/auth.store";
 
 function MaterialDetailPage() {
+  const isProfessor = useAuthStore((state) => state.user?.role === "professor");
+
   const { courseId, materialId } = useParams();
   const navigate = useNavigate();
   const [material, setMaterial] = useState(null);
@@ -49,17 +52,24 @@ function MaterialDetailPage() {
           </div>
 
           <div className="mt-4">
-            <button className="btn btn-secondary me-2" onClick={() => navigate(-1)}>
+            <button
+              className="btn btn-secondary me-2"
+              onClick={() => navigate(-1)}
+            >
               Volver
             </button>
-            <button
-              className="btn btn-primary"
-              onClick={() =>
-                navigate(`/courses/${courseId}/materials/form?materialId=${materialId}`)
-              }
-            >
-              Editar
-            </button>
+            {isProfessor && (
+              <button
+                className="btn btn-primary"
+                onClick={() =>
+                  navigate(
+                    `/courses/${courseId}/materials/form?materialId=${materialId}`
+                  )
+                }
+              >
+                Editar
+              </button>
+            )}
           </div>
         </section>
       </div>

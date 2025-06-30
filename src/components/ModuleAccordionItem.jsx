@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import ModuleResourceList from "./ModuleResourceList";
+import { useAuthStore } from "../store/auth.store";
 
 function ModuleAccordionItem({
   module,
@@ -10,6 +11,8 @@ function ModuleAccordionItem({
   index,
   course,
 }) {
+  const isProfessor = useAuthStore((state) => state.user?.role === "professor");
+
   const isEmpty =
     materials.length === 0 &&
     evaluations.length === 0 &&
@@ -32,15 +35,17 @@ function ModuleAccordionItem({
           >
             {module.moduleOrder}. {module.title}
           </button>
-          <div className="px-3">
-            <Link
-              to={`/courses/${course}/modules/form?moduleId=${module.id}`}
-              className="btn btn-sm btn-outline-primary"
-              onClick={(e) => e.stopPropagation()}
-            >
-              Editar
-            </Link>
-          </div>
+          {isProfessor && (
+            <div className="px-3">
+              <Link
+                to={`/courses/${course}/modules/form?moduleId=${module.id}`}
+                className="btn btn-sm btn-outline-primary"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Editar
+              </Link>
+            </div>
+          )}
         </div>
       </h2>
 

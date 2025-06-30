@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useAuthStore } from "../store/auth.store";
 
 function ResourceItem({ resource, type, editPath, detailPath }) {
+const isProfessor = useAuthStore((state) => state.user?.role === "professor");
+
   return (
     <div className="card mb-3">
       <div className="card-body">
@@ -23,9 +26,11 @@ function ResourceItem({ resource, type, editPath, detailPath }) {
             Ver detalle
           </Link>
 
-          <Link to={editPath} className="btn btn-sm btn-outline-primary">
-            Editar
-          </Link>
+          {isProfessor && (
+            <Link to={editPath} className="btn btn-sm btn-outline-primary">
+              Editar
+            </Link>
+          )}
         </div>
       </div>
     </div>

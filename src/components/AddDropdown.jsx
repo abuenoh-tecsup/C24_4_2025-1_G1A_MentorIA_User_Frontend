@@ -1,11 +1,17 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { useAuthStore } from "../store/auth.store";
 
 function AddDropdown({courseId}) {
   const navigate = useNavigate();
 
+  const { user } = useAuthStore();
+  const isProfessor = user?.role === "professor";
+
   const handleCreate = (type) => {
     navigate(`/courses/${courseId}/${type}s/form`);
   };
+
+  if (!isProfessor) return null; 
 
   return (
     <div className="dropdown">

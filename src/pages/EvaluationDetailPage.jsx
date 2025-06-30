@@ -2,8 +2,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import evaluationService from "../api/evaluationService";
 import CourseSidebar from "../components/CourseSidebar";
+import { useAuthStore } from "../store/auth.store";
 
 function EvaluationDetailPage() {
+  const isProfessor = useAuthStore((state) => state.user?.role === "professor");
+
   const { courseId, evaluationId } = useParams();
   const navigate = useNavigate();
   const [evaluation, setEvaluation] = useState(null);
@@ -50,14 +53,16 @@ function EvaluationDetailPage() {
             <button className="btn btn-secondary me-2" onClick={() => navigate(-1)}>
               Volver
             </button>
-            <button
-              className="btn btn-primary"
-              onClick={() =>
-                navigate(`/courses/${courseId}/evaluations/form?evaluationId=${evaluationId}`)
-              }
-            >
-              Editar
-            </button>
+            {isProfessor && (
+              <button
+                className="btn btn-primary"
+                onClick={() =>
+                  navigate(`/courses/${courseId}/evaluations/form?evaluationId=${evaluationId}`)
+                }
+              >
+                Editar
+              </button>
+            )}
           </div>
         </section>
       </div>

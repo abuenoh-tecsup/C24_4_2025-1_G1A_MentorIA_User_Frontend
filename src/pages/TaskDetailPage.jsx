@@ -5,17 +5,18 @@ import submissionService from "../api/submissionService";
 import CourseSidebar from "../components/CourseSidebar";
 import SubmissionForm from "../components/SubmissionForm";
 import { SubmissionDetails } from "../components/SubmissionDetails";
-
-
-const USER_ID = 1;
-const USER_ROLE = "professor";
+import { useAuthStore } from "../store/auth.store";
 
 function TaskDetailPage() {
   const { courseId, taskId } = useParams();
   const navigate = useNavigate();
 
-  const isStudent = USER_ROLE === "student";
-  const isProfessor = USER_ROLE === "professor";
+  const { user } = useAuthStore();
+  const userId = user?.id;
+  const userRole = user?.role;
+
+  const isStudent = userRole === "student";
+  const isProfessor = userRole === "professor";
 
   const [showForm, setShowForm] = useState(false);
 
@@ -27,7 +28,7 @@ function TaskDetailPage() {
     enrichedSubmissions,
     setEnrichedSubmissions,
     refreshSubmissions,
-  } = useTaskDetailData(taskId, courseId, USER_ID, USER_ROLE);
+  } = useTaskDetailData(taskId, courseId, userId, userRole);
 
   const handleFormSubmit = async (data) => {
     try {
@@ -43,7 +44,7 @@ function TaskDetailPage() {
         await submissionService.create(payload);
       }
 
-      await refreshSubmissions(); // recarga todo
+      await refreshSubmissions();
       setShowForm(false);
     } catch (err) {
       alert(err.message);
@@ -120,7 +121,7 @@ function TaskDetailPage() {
               {showForm ? (
                 <SubmissionForm
                   defaultValues={{
-                    userId: USER_ID,
+                    userId: userId,
                     fileUrl: userSubmission?.fileUrl || "",
                     comments: userSubmission?.comments || "",
                   }}
