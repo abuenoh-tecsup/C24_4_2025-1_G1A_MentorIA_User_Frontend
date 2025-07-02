@@ -4,6 +4,7 @@ import forumService from "../api/forumService";
 import commentService from "../api/commentService";
 import CourseSidebar from "../components/CourseSidebar";
 import { useAuthStore } from "../store/auth.store";
+import Breadcrumb from "../components/Breadcrumb";
 
 function ForumDetailPage() {
   const user = useAuthStore((state) => state.user);
@@ -59,9 +60,16 @@ function ForumDetailPage() {
 
   const author = forum.author;
 
+  const breadcrumbItems = [
+    { name: forum.module.course.subject.name, href: `/courses/${courseId}` },
+    { name: "Foros", href: `/courses/${courseId}/forums` },
+    { name: forum.title, href: `/courses/${courseId}/forums/${forumId}` }
+  ];
+
   return (
     <div className="container-fluid h-100">
-      <div className="row h-100">
+      <Breadcrumb items={breadcrumbItems}></Breadcrumb>
+      <div className="row">
         <CourseSidebar courseId={courseId} />
 
         <main className="col-md-9 p-4">

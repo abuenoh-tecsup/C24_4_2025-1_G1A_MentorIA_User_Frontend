@@ -3,11 +3,14 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import forumService from "../api/forumService";
 import moduleService from "../api/moduleService";
+import courseService from "../api/courseService";
 import userService from "../api/userService";
 import CourseSidebar from "../components/CourseSidebar";
+import Breadcrumb from "../components/Breadcrumb";
 
 function ForumFormPage() {
   const { courseId } = useParams();
+  const [course, setCourse] = useState(null);
   const [searchParams] = useSearchParams();
   const forumId = searchParams.get("forumId");
 
@@ -38,6 +41,9 @@ function ForumFormPage() {
 
       setModules(courseModules);
       setUsers(allUsers);
+      courseService.show(courseId).then((data) => {
+        setCourse(data);
+      });
     };
 
     fetchModulesAndUsers();
@@ -85,14 +91,21 @@ function ForumFormPage() {
 
   if (loading) return <p className="p-3">Cargando foro...</p>;
 
+  const breadcrumbItems = [
+    { name: course?.subject.name, href: `/courses/${courseId}` },
+    { name: "Foros", href: `/courses/${courseId}/forums` },
+    { name: isEditing ? "Editar foro" : "Crear foro", href: "/" },
+  ];
+
   return (
     <div className="container-fluid h-100">
-      <div className="row h-100">
+      <Breadcrumb items={breadcrumbItems}></Breadcrumb>
+      <div className="row">
         <CourseSidebar courseId={courseId} />
 
         <section className="col-md-9 p-3">
           <h2>
-            <i class="bi bi-chat-fill pe-2"></i>
+            <i className="bi bi-chat-fill pe-2"></i>
             {isEditing ? "Editar Foro" : "Nuevo Foro"}
           </h2>
 
@@ -100,7 +113,10 @@ function ForumFormPage() {
             <div className="alert alert-danger">{errors.root.message}</div>
           )}
 
-          <form onSubmit={handleSubmit(onSubmit)} className="mt-3 bg-white p-3 basic-border">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="mt-3 bg-white p-3 basic-border"
+          >
             <div className="mb-3">
               <label className="form-label">Título</label>
               <input

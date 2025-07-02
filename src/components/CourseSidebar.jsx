@@ -1,4 +1,4 @@
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 
 function CourseSidebar({ courseId }) {
   const id = courseId;
@@ -13,7 +13,7 @@ function CourseSidebar({ courseId }) {
             `nav-link course-nav-link ${isActive ? "active" : ""}`
           }
         >
-          <i class="bi bi-house-fill pe-1"></i>
+          <i className="bi bi-house-fill pe-1"></i>
           Página de inicio
         </NavLink>
         <NavLink
@@ -22,7 +22,7 @@ function CourseSidebar({ courseId }) {
             `nav-link course-nav-link ${isActive ? "active" : ""}`
           }
         >
-          <i class="bi bi-bookmark-fill pe-1"></i>
+          <i className="bi bi-bookmark-fill pe-1"></i>
           Módulos
         </NavLink>
         <NavLink
@@ -31,7 +31,7 @@ function CourseSidebar({ courseId }) {
             `nav-link course-nav-link ${isActive ? "active" : ""}`
           }
         >
-          <i class="bi bi-paperclip pe-1"></i>
+          <i className="bi bi-paperclip pe-1"></i>
           Materiales
         </NavLink>
         <NavLink
@@ -40,7 +40,7 @@ function CourseSidebar({ courseId }) {
             `nav-link course-nav-link ${isActive ? "active" : ""}`
           }
         >
-          <i class="bi bi-pencil-square pe-1"></i>
+          <i className="bi bi-pencil-square pe-1"></i>
           Tareas
         </NavLink>
         <NavLink
@@ -49,7 +49,7 @@ function CourseSidebar({ courseId }) {
             `nav-link course-nav-link ${isActive ? "active" : ""}`
           }
         >
-          <i class="bi bi-clipboard-fill pe-1"></i>
+          <i className="bi bi-clipboard-fill pe-1"></i>
           Evaluaciones
         </NavLink>
         <NavLink
@@ -58,7 +58,7 @@ function CourseSidebar({ courseId }) {
             `nav-link course-nav-link ${isActive ? "active" : ""}`
           }
         >
-          <i class="bi bi-chat-fill pe-1"></i>
+          <i className="bi bi-chat-fill pe-1"></i>
           Foros
         </NavLink>
       </nav>

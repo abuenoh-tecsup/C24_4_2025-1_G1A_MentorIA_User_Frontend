@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import submissionService from "../api/submissionService";
 import CourseSidebar from "../components/CourseSidebar";
+import Breadcrumb from "../components/Breadcrumb";
 
 function SubmissionDetailPage() {
   const { submissionId } = useParams();
@@ -46,9 +47,19 @@ function SubmissionDetailPage() {
   if (loading) return <p className="p-3">Cargando entrega...</p>;
   if (!submission) return <p className="p-3">Entrega no encontrada</p>;
 
+  console.log(submission)
+
+  const breadcrumbItems = [
+    { name: submission.task.module.course.subject.name, href: `/courses/${submission.task.module.course.id}` },
+    { name: "Tareas", href: `/courses/${submission.task.module.course.id}/tasks` },
+    { name: submission.task.title , href: `/courses/${submission.task.module.course.id}/tasks/${submission.task.id}` },
+    { name:`Entrega de ${submission.user.firstName}`, href: "/" },
+  ];
+
   return (
     <div className="container-fluid h-100">
-      <div className="row h-100">
+      <Breadcrumb items={breadcrumbItems}></Breadcrumb>
+      <div className="row">
         <CourseSidebar courseId={submission.task.module.course.id} />
 
         <main className="col-md-9 p-4">

@@ -4,6 +4,7 @@ import generatedContentService from "../api/generatedContentService";
 import CourseSidebar from "../components/CourseSidebar";
 import ReactMarkdown from "react-markdown";
 import Flashcard from "../components/Flashcard";
+import Breadcrumb from "../components/Breadcrumb";
 
 function GeneratedContentDetailPage() {
   const { courseId, materialId, generatedId } = useParams();
@@ -33,9 +34,17 @@ function GeneratedContentDetailPage() {
   if (loading) return <p className="p-3">Cargando contenido generado...</p>;
   if (!content) return <p className="p-3">Contenido no encontrado</p>;
 
+  const breadcrumbItems = [
+    { name: content.material.module.course.subject.name, href: `/courses/${content.material.module.course.id}` },
+    { name: "Materiales", href: `/courses/${courseId}/materials` },
+    { name: content.material.title , href: `/courses/${courseId}/materials/${content.material.id}` },
+    { name: "Contenido generado" , href: "/" },
+  ];
+
   return (
     <div className="container-fluid h-100">
-      <div className="row h-100">
+      <Breadcrumb items={breadcrumbItems}></Breadcrumb>
+      <div className="row">
         <CourseSidebar courseId={courseId} />
         <section className="col-md-9 p-4">
           <h3 className="mb-4">Detalle de contenido generado</h3>

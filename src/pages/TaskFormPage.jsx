@@ -2,11 +2,14 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import taskService from "../api/taskService";
+import courseService from "../api/courseService";
 import moduleService from "../api/moduleService";
 import CourseSidebar from "../components/CourseSidebar";
+import Breadcrumb from "../components/Breadcrumb";
 
 function TaskFormPage() {
   const { courseId } = useParams();
+  const [course, setCourse] = useState(null);
   const [searchParams] = useSearchParams();
   const taskId = searchParams.get("taskId");
 
@@ -28,6 +31,7 @@ function TaskFormPage() {
       const filtered = allModules.filter(
         (mod) => mod.course.id === parseInt(courseId)
       );
+      courseService.show(courseId).then((data)=>{setCourse(data)});
       setModules(filtered);
     });
   }, [courseId]);
@@ -74,14 +78,21 @@ function TaskFormPage() {
 
   if (loading) return <p className="p-3">Cargando tarea...</p>;
 
+  const breadcrumbItems = [
+    { name: course?.subject.name, href: `/courses/${courseId}` },
+    { name: "Tareas", href: `/courses/${courseId}/tasks` },
+    { name: (isEditing) ? "Editar tarea" : "Crear tarea" , href: "/" },
+  ];
+
   return (
     <div className="container-fluid h-100">
-      <div className="row h-100">
+      <Breadcrumb items={breadcrumbItems}></Breadcrumb>
+      <div className="row">
         <CourseSidebar courseId={courseId} />
 
         <section className="col-md-9 p-3">
           <h2 className="m-0">
-            <i class="bi bi-pencil-square pe-2"></i>
+            <i className="bi bi-pencil-square pe-2"></i>
             {isEditing ? "Editar Tarea" : "Nueva Tarea"}
           </h2>
 

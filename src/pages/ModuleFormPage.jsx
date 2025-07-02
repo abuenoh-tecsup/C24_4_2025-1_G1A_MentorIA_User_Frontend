@@ -1,11 +1,14 @@
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import courseService from "../api/courseService";
 import moduleService from "../api/moduleService";
 import CourseSidebar from "../components/CourseSidebar";
+import Breadcrumb from "../components/Breadcrumb";
 
 function ModuleFormPage() {
   const { courseId } = useParams();
+  const [course, setCourse] = useState(null);
   const [searchParams] = useSearchParams();
   const moduleId = searchParams.get("moduleId");
 
@@ -33,6 +36,7 @@ function ModuleFormPage() {
         })
         .finally(() => setLoading(false));
     }
+    courseService.show(courseId).then((data)=>{setCourse(data)});
   }, [isEditing, moduleId, setValue]);
 
   const onSubmit = async (data) => {
@@ -60,14 +64,21 @@ function ModuleFormPage() {
 
   if (loading) return <p className="p-3">Cargando módulo...</p>;
 
+  const breadcrumbItems = [
+    { name: course?.subject.name, href: `/courses/${courseId}` },
+    { name: "Módulos", href: `/courses/${courseId}/modules` },
+    { name: (isEditing) ? "Editar módulo" : "Crear módulo" , href: "/" },
+  ];
+
   return (
     <div className="container-fluid h-100">
-      <div className="row h-100">
+      <Breadcrumb items={breadcrumbItems}></Breadcrumb>
+      <div className="row">
         <CourseSidebar courseId={courseId} />
 
         <section className="col-md-9 p-3">
           <h2>
-            <i class="bi bi-bookmark-fill pe-1"></i>
+            <i className="bi bi-bookmark-fill pe-1"></i>
             {isEditing ? "Editar Módulo" : "Nuevo Módulo"}
           </h2>
 

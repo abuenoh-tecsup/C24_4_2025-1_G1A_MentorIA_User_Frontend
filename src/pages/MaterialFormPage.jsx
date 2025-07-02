@@ -2,11 +2,14 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import materialService from "../api/materialService";
+import courseService from "../api/courseService";
 import moduleService from "../api/moduleService";
 import CourseSidebar from "../components/CourseSidebar";
+import Breadcrumb from "../components/Breadcrumb";
 
 function MaterialFormPage() {
   const { courseId } = useParams();
+  const [course, setCourse] = useState(null);
   const [searchParams] = useSearchParams();
   const materialId = searchParams.get("materialId");
 
@@ -48,6 +51,7 @@ function MaterialFormPage() {
         })
         .finally(() => setLoading(false));
     }
+    courseService.show(courseId).then((data)=>{setCourse(data)});
   }, [isEditing, materialId, setValue]);
 
   const onSubmit = async (data) => {
@@ -84,14 +88,21 @@ function MaterialFormPage() {
 
   if (loading) return <p className="p-3">Cargando material...</p>;
 
+  const breadcrumbItems = [
+    { name: course?.subject.name, href: `/courses/${courseId}` },
+    { name: "Tareas", href: `/courses/${courseId}/materials` },
+    { name: (isEditing) ? "Editar material" : "Crear material" , href: "/" },
+  ];
+
   return (
     <div className="container-fluid h-100">
-      <div className="row h-100">
+      <Breadcrumb items={breadcrumbItems}></Breadcrumb>
+      <div className="row">
         <CourseSidebar courseId={courseId} />
 
         <section className="col-md-9 p-3">
           <h2 className="m-0">
-            <i class="bi bi-paperclip pe-2"></i>
+            <i className="bi bi-paperclip pe-2"></i>
             {isEditing ? "Editar Material" : "Nuevo Material"}
           </h2>
 

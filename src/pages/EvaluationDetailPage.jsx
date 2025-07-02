@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import evaluationService from "../api/evaluationService";
 import CourseSidebar from "../components/CourseSidebar";
 import { useAuthStore } from "../store/auth.store";
+import Breadcrumb from "../components/Breadcrumb";
 
 function EvaluationDetailPage() {
   const isProfessor = useAuthStore((state) => state.user?.role === "professor");
@@ -22,13 +23,20 @@ function EvaluationDetailPage() {
   if (loading) return <p className="p-3">Cargando evaluación...</p>;
   if (!evaluation) return <p className="p-3">Evaluación no encontrada</p>;
 
+  const breadcrumbItems = [
+    { name: evaluation.module.course.subject.name, href: `/courses/${courseId}` },
+    { name: "Evaluaciones", href: `/courses/${courseId}/evaluations` },
+    { name: evaluation.title, href: `/courses/${courseId}/evaluations/${evaluationId}` }
+  ];
+
   return (
     <div className="container-fluid h-100">
-      <div className="row h-100">
+      <Breadcrumb items={breadcrumbItems}></Breadcrumb>
+      <div className="row">
         <CourseSidebar courseId={courseId} />
 
         <main className="col-md-9 p-3">
-          <h2 className="mb-3"><i class="bi bi-clipboard-fill pe-2"></i>{evaluation.title}</h2>
+          <h2 className="mb-3"><i className="bi bi-clipboard-fill pe-2"></i>{evaluation.title}</h2>
 
           <section className="bg-white basic-border p-4 mb-4">
             <div className="mb-3">

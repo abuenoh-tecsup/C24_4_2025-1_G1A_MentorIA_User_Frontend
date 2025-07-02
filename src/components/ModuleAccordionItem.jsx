@@ -44,7 +44,7 @@ function ModuleAccordionItem({
                 className="btn btn-sm btn-outline-primary"
                 onClick={(e) => e.stopPropagation()}
               >
-                <i class="bi bi-pencil-square"></i>
+                <i className="bi bi-pencil-square"></i>
               </Link>
             </div>
           )}

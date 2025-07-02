@@ -3,10 +3,13 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import evaluationService from "../api/evaluationService";
 import moduleService from "../api/moduleService";
+import courseService from "../api/courseService";
 import CourseSidebar from "../components/CourseSidebar";
+import Breadcrumb from "../components/Breadcrumb";
 
 function EvaluationFormPage() {
   const { courseId } = useParams();
+  const [course, setCourse] = useState(null);
   const [searchParams] = useSearchParams();
   const evaluationId = searchParams.get("evaluationId");
 
@@ -31,6 +34,9 @@ function EvaluationFormPage() {
         (mod) => mod.course.id === parseInt(courseId)
       );
       setModules(courseModules);
+      courseService.show(courseId).then((data) => {
+        setCourse(data);
+      });
     };
 
     fetchModules();
@@ -81,14 +87,21 @@ function EvaluationFormPage() {
 
   if (loading) return <p className="p-3">Cargando evaluación...</p>;
 
+  const breadcrumbItems = [
+    { name: course?.subject.name, href: `/courses/${courseId}` },
+    { name: "Evaluaciones", href: `/courses/${courseId}/evaluations` },
+    { name: isEditing ? "Editar evaluacion" : "Crear evaluación", href: "/" },
+  ];
+
   return (
     <div className="container-fluid h-100">
-      <div className="row h-100">
+      <Breadcrumb items={breadcrumbItems}></Breadcrumb>
+      <div className="row">
         <CourseSidebar courseId={courseId} />
 
         <section className="col-md-9 p-3">
           <h2 className="m-0">
-            <i class="bi bi-clipboard-fill pe-2"></i>
+            <i className="bi bi-clipboard-fill pe-2"></i>
             {isEditing ? "Editar Evaluación" : "Nueva Evaluación"}
           </h2>
 
@@ -96,7 +109,10 @@ function EvaluationFormPage() {
             <div className="alert alert-danger">{errors.root.message}</div>
           )}
 
-          <form onSubmit={handleSubmit(onSubmit)} className="mt-3 bg-white p-3 basic-border">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="mt-3 bg-white p-3 basic-border"
+          >
             <div className="mb-3">
               <label className="form-label">Título</label>
               <input

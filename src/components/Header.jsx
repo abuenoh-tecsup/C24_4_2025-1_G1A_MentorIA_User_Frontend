@@ -11,7 +11,7 @@ function Header() {
   };
 
   return (
-    <header className="header-container text-white">
+    <header className="header-container text-white fixed-top">
       <nav className="navbar navbar-expand-lg navbar-dark flex-lg-column align-items-start p-3 p-lg-0 h-lg-100">
         {/* Logo y toggle button */}
         <div className="d-flex w-100 justify-content-between align-items-center mb-lg-4">

@@ -6,6 +6,7 @@ import CourseSidebar from "../components/CourseSidebar";
 import SubmissionForm from "../components/SubmissionForm";
 import { SubmissionDetails } from "../components/SubmissionDetails";
 import { useAuthStore } from "../store/auth.store";
+import Breadcrumb from "../components/Breadcrumb";
 
 function TaskDetailPage() {
   const { courseId, taskId } = useParams();
@@ -54,16 +55,23 @@ function TaskDetailPage() {
   if (loading) return <p className="p-3">Cargando tarea...</p>;
   if (!task) return <p className="p-3">Tarea no encontrada</p>;
 
+  const breadcrumbItems = [
+    { name: task.module.course.subject.name, href: `/courses/${courseId}` },
+    { name: "Tareas", href: `/courses/${courseId}/tasks` },
+    { name: task.title, href: `/courses/${courseId}/tasks/${taskId}` }
+  ];
+
   return (
     <div className="container-fluid h-100">
-      <div className="row h-100">
+      <Breadcrumb items={breadcrumbItems}></Breadcrumb>
+      <div className="row">
         <CourseSidebar courseId={courseId} />
 
         <main className="col-md-9 p-3">
           {/* Header */}
           <header className="d-flex justify-content-between align-items-center mb-4">
             <h2 className="mb-0">
-              <i class="bi bi-pencil-square pe-2"></i>{task.title}</h2>
+              <i className="bi bi-pencil-square pe-2"></i>{task.title}</h2>
             <div>
               <button
                 className="btn btn-secondary me-2"

@@ -4,6 +4,7 @@ import materialService from "../api/materialService";
 import generatedContentService from "../api/generatedContentService";
 import CourseSidebar from "../components/CourseSidebar";
 import { useAuthStore } from "../store/auth.store";
+import Breadcrumb from "../components/Breadcrumb";
 
 function MaterialDetailPage() {
   const user = useAuthStore((state) => state.user);
@@ -52,15 +53,22 @@ function MaterialDetailPage() {
   if (loading) return <p className="p-3">Cargando material...</p>;
   if (!material) return <p className="p-3">Material no encontrado</p>;
 
+  const breadcrumbItems = [
+    { name: material.module.course.subject.name, href: `/courses/${courseId}` },
+    { name: "Materiales", href: `/courses/${courseId}/materials` },
+    { name: material.title, href: `/courses/${courseId}/materials/${materialId}` },
+  ];
+
   return (
     <div className="container-fluid h-100">
-      <div className="row h-100">
+      <Breadcrumb items={breadcrumbItems}></Breadcrumb>
+      <div className="row">
         <CourseSidebar courseId={courseId} />
 
         <section className="col-md-9 p-3">
           {/* Sección 1: Detalles del material */}
           <h2 className="mb-3">
-            <i class="bi bi-paperclip pe-2"></i>
+            <i className="bi bi-paperclip pe-2"></i>
             {material.title}
           </h2>
 
