@@ -336,3 +336,6 @@
 .basic-border{
   border: 1px solid rgba(0, 0, 0, 0.175);
 }
+.background-gradient-1{
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+}

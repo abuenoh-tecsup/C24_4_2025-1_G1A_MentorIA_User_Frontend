@@ -25,16 +25,20 @@ function HomePage() {
   return (
     <div className="main-container animate-fade-in">
       {/* Hero Section */}
-      <div className="home-hero animate-slide-down">
-        <h1>🎓 Plataforma Educativa MentorIA</h1>
-        <p className="text-white">Descubre cursos increíbles y expande tu conocimiento con los mejores profesores</p>
+      <div className="home-hero animate-slide-down p-5 background-gradient-1">
+        <h1>
+          <i class="bi bi-mortarboard-fill me-2"></i>
+          Plataforma Educativa MentorIA
+        </h1>
+        <p className="text-white">
+          Descubre cursos increíbles y expande tu conocimiento con los mejores
+          profesores
+        </p>
       </div>
 
       {/* Courses Section */}
       <div className="courses-container animate-slide-up">
-        <h2 className="courses-title">
-          Cursos Disponibles
-        </h2>
+        <h2 className="courses-title">Cursos Disponibles</h2>
 
         {loading ? (
           // Loading State
@@ -48,26 +52,30 @@ function HomePage() {
           <div className="empty-state">
             <div className="empty-state-icon">📚</div>
             <h3>No hay cursos disponibles</h3>
-            <p>Parece que aún no hay cursos en la plataforma. ¡Vuelve pronto para ver las novedades!</p>
+            <p>
+              Parece que aún no hay cursos en la plataforma. ¡Vuelve pronto para
+              ver las novedades!
+            </p>
           </div>
         ) : (
           // Courses List
           <div className="row">
             {courses.map((course, index) => (
               <div key={course.id} className="col-12 col-md-6 col-lg-4 mb-4">
-                <div 
+                <div
                   className="course-card animate-bounce-in hover-lift"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <Link to={`/courses/${course.id}`} className="text-decoration-none">
-                    <div className="course-id">
-                      ID: {course.id}
-                    </div>
+                  <Link
+                    to={`/courses/${course.id}`}
+                    className="text-decoration-none"
+                  >
+                    <div className="course-id">ID: {course.id}</div>
                     <div className="course-subject">
-                      📖 {course.subject?.name || "Sin nombre"}
+                      <i class="bi bi-book-fill me-2"></i> {course.subject?.name || "Sin nombre"}
                     </div>
                     <div className="course-professor">
-                      👨‍🏫 {course.professor?.username || "Sin profesor asignado"}
+                      <i class="bi bi-person-workspace me-2"></i> {course.professor?.username || "Sin profesor asignado"}
                     </div>
                   </Link>
                 </div>

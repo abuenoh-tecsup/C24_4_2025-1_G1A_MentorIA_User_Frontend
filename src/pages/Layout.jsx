@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 function Layout() {
   return (
-    <div className="d-flex flex-column flex-lg-row min-vh-100">
+    <div className="d-flex flex-column flex-lg-row">
       <Header />
       <main className="flex-grow-1 bg-light p-3">
         <Outlet />
