@@ -59,10 +59,11 @@ function TaskDetailPage() {
       <div className="row h-100">
         <CourseSidebar courseId={courseId} />
 
-        <main className="col-md-10 p-4">
+        <main className="col-md-9 p-3">
           {/* Header */}
           <header className="d-flex justify-content-between align-items-center mb-4">
-            <h3 className="mb-0">{task.title}</h3>
+            <h2 className="mb-0">
+              <i class="bi bi-pencil-square pe-2"></i>{task.title}</h2>
             <div>
               <button
                 className="btn btn-secondary me-2"
@@ -84,7 +85,7 @@ function TaskDetailPage() {
           </header>
 
           {/* Info Tarea */}
-          <section className="bg-white border p-4 rounded mb-4">
+          <section className="bg-white basic-border p-4 mb-4">
             <h5>Descripción</h5>
             <p>{task.description}</p>
 
@@ -103,7 +104,7 @@ function TaskDetailPage() {
 
           {/* Entrega Estudiante */}
           {isStudent && (
-            <section className="bg-white border p-4 rounded mb-4">
+            <section className="bg-white basic-border p-4 mb-4">
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <h5 className="mb-0">Entrega</h5>
                 <button
@@ -139,7 +140,7 @@ function TaskDetailPage() {
 
           {/* Lista de Entregas - Profesor */}
           {isProfessor && (
-            <section className="bg-white border p-4 rounded mb-4">
+            <section className="bg-white basic-border p-4 mb-4">
               <h5 className="mb-3">Entregas de estudiantes</h5>
               {enrichedSubmissions.length === 0 ? (
                 <p className="text-muted">No hay estudiantes registrados.</p>

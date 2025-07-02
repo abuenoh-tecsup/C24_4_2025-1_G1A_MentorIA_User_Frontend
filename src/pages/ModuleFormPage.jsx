@@ -65,14 +65,20 @@ function ModuleFormPage() {
       <div className="row h-100">
         <CourseSidebar courseId={courseId} />
 
-        <section className="col-md-10 p-4">
-          <h3>{isEditing ? "Editar Módulo" : "Nuevo Módulo"}</h3>
+        <section className="col-md-9 p-3">
+          <h2>
+            <i class="bi bi-bookmark-fill pe-1"></i>
+            {isEditing ? "Editar Módulo" : "Nuevo Módulo"}
+          </h2>
 
           {errors.root && (
             <div className="alert alert-danger">{errors.root.message}</div>
           )}
 
-          <form onSubmit={handleSubmit(onSubmit)} className="mt-3">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="mt-3 bg-white p-3 basic-border"
+          >
             <div className="mb-3">
               <label className="form-label">Título</label>
               <input

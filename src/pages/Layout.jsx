@@ -1,20 +1,14 @@
 import Header from "../components/Header";
-import SideBar from "../components/SideBar";
 import { Outlet } from "react-router-dom";
 
 function Layout() {
   return (
-    <>
+    <div className="d-flex flex-column flex-lg-row min-vh-100">
       <Header />
-      <div className="container-fluid flex-grow-1 bg-secondary p-0 d-flex">
-        <div className="row g-0 flex-grow-1">
-          <SideBar className="col-1 d-flex rounded-0" />
-          <main className="col bg-light">
-            <Outlet />
-          </main>
-        </div>
-      </div>
-    </>
+      <main className="flex-grow-1 bg-light p-3">
+        <Outlet />
+      </main>
+    </div>
   );
 }
 

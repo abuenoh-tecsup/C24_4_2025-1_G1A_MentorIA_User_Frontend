@@ -27,44 +27,42 @@ function EvaluationDetailPage() {
       <div className="row h-100">
         <CourseSidebar courseId={courseId} />
 
-        <section className="col-md-10 p-4">
-          <h3 className="mb-4">{evaluation.title}</h3>
+        <main className="col-md-9 p-3">
+          <h2 className="mb-3"><i class="bi bi-clipboard-fill pe-2"></i>{evaluation.title}</h2>
 
-          <div className="mb-3">
-            <strong>Descripción:</strong>
-            <p>{evaluation.description}</p>
-          </div>
-
-          <div className="mb-3">
-            <strong>Fecha de inicio:</strong>{" "}
-            {new Date(evaluation.startDate).toLocaleString()}
-          </div>
-
-          <div className="mb-3">
-            <strong>Fecha de fin:</strong>{" "}
-            {new Date(evaluation.endDate).toLocaleString()}
-          </div>
-
-          <div className="mb-3">
-            <strong>Límite de tiempo:</strong> {evaluation.timeLimit} minutos
-          </div>
-
-          <div className="mt-4">
-            <button className="btn btn-secondary me-2" onClick={() => navigate(-1)}>
-              Volver
-            </button>
-            {isProfessor && (
-              <button
-                className="btn btn-primary"
-                onClick={() =>
-                  navigate(`/courses/${courseId}/evaluations/form?evaluationId=${evaluationId}`)
-                }
-              >
-                Editar
+          <section className="bg-white basic-border p-4 mb-4">
+            <div className="mb-3">
+              <strong>Descripción:</strong>
+              <p>{evaluation.description}</p>
+            </div>
+            <div className="mb-3">
+              <strong>Fecha de inicio:</strong>{" "}
+              {new Date(evaluation.startDate).toLocaleString()}
+            </div>
+            <div className="mb-3">
+              <strong>Fecha de fin:</strong>{" "}
+              {new Date(evaluation.endDate).toLocaleString()}
+            </div>
+            <div className="mb-3">
+              <strong>Límite de tiempo:</strong> {evaluation.timeLimit} minutos
+            </div>
+            <div className="mt-4">
+              <button className="btn btn-secondary me-2" onClick={() => navigate(-1)}>
+                Volver
               </button>
-            )}
-          </div>
-        </section>
+              {isProfessor && (
+                <button
+                  className="btn btn-primary"
+                  onClick={() =>
+                    navigate(`/courses/${courseId}/evaluations/form?evaluationId=${evaluationId}`)
+                  }
+                >
+                  Editar
+                </button>
+              )}
+            </div>
+          </section>
+        </main>
       </div>
     </div>
   );

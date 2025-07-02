@@ -5,7 +5,7 @@ function ResourceItem({ resource, type, editPath, detailPath }) {
 const isProfessor = useAuthStore((state) => state.user?.role === "professor");
 
   return (
-    <div className="card mb-3">
+    <div className="card mb-3 rounded-0 border-top-item">
       <div className="card-body">
         <h5 className="card-title">{resource.title}</h5>
         <p className="card-text">{resource.description}</p>

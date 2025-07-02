@@ -23,11 +23,14 @@ function ModulePage() {
   return (
     <div className="container-fluid h-100">
       <div className="row h-100">
-        <CourseSidebar courseId={courseId}/>
-        <section className="col-md-10 p-3">
+        <CourseSidebar courseId={courseId} />
+        <section className="col-md-9 p-3">
           <div className="d-flex justify-content-between align-items-center mb-4">
-            <h2 className="m-0">Módulos del Curso</h2>
-            <AddDropdown courseId={courseId}/>
+            <h2 className="m-0">
+              <i class="bi bi-bookmark-fill pe-1"></i>
+              Módulos del Curso
+            </h2>
+            <AddDropdown courseId={courseId} />
           </div>
 
           <ModuleAccordionList courseId={courseId} />

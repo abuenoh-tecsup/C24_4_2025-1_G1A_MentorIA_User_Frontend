@@ -89,14 +89,17 @@ function MaterialFormPage() {
       <div className="row h-100">
         <CourseSidebar courseId={courseId} />
 
-        <section className="col-md-10 p-4">
-          <h3>{isEditing ? "Editar Material" : "Nuevo Material"}</h3>
+        <section className="col-md-9 p-3">
+          <h2 className="m-0">
+            <i class="bi bi-paperclip pe-2"></i>
+            {isEditing ? "Editar Material" : "Nuevo Material"}
+          </h2>
 
           {errors.root && (
             <div className="alert alert-danger">{errors.root.message}</div>
           )}
 
-          <form onSubmit={handleSubmit(onSubmit)} className="mt-3">
+          <form onSubmit={handleSubmit(onSubmit)} className="mt-3 bg-white p-3 basic-border">
             <div className="mb-3">
               <label className="form-label">Título</label>
               <input

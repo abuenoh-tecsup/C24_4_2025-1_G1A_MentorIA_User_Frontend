@@ -20,8 +20,8 @@ function ModuleAccordionItem({
     tasks.length === 0;
 
   return (
-    <div className="accordion-item">
-      <h2 className="accordion-header" id={`heading-${module.id}`}>
+    <div className="accordion-item mb-4 rounded-0">
+      <h2 className="accordion-header basic-border" id={`heading-${module.id}`}>
         <div className="d-flex justify-content-between align-items-center">
           <button
             className={`accordion-button outline-none ${
@@ -33,7 +33,9 @@ function ModuleAccordionItem({
             aria-expanded={index === 0 ? "true" : "false"}
             aria-controls={`collapse-${module.id}`}
           >
-            {module.moduleOrder}. {module.title}
+            <h5 className="m-0">
+              {module.moduleOrder}. {module.title}
+            </h5>
           </button>
           {isProfessor && (
             <div className="px-3">
@@ -42,7 +44,7 @@ function ModuleAccordionItem({
                 className="btn btn-sm btn-outline-primary"
                 onClick={(e) => e.stopPropagation()}
               >
-                Editar
+                <i class="bi bi-pencil-square"></i>
               </Link>
             </div>
           )}
@@ -51,7 +53,7 @@ function ModuleAccordionItem({
 
       <div
         id={`collapse-${module.id}`}
-        className={`accordion-collapse collapse ${index === 0 ? "show" : ""}`}
+        className={`basic-border border-top-0 accordion-collapse collapse ${index === 0 ? "show" : ""}`}
         aria-labelledby={`heading-${module.id}`}
         data-bs-parent="#modulesAccordion"
       >

@@ -21,7 +21,7 @@ function CoursePage() {
     <div className="container-fluid h-100">
       <div className="row h-100">
         <CourseSidebar courseId={courseId}/>
-        <section className="col-md-10 p-3">
+        <section className="col-md-9 p-3">
           <h2>Detalle del Curso</h2>
           <ul className="list-group">
             <li className="list-group-item">

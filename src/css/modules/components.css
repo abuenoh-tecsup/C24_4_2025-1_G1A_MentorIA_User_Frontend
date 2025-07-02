@@ -1,386 +1,132 @@
-/* ===== HEADER COMPONENT ===== */
+/* ===== HEADER SIMPLE Y EFECTIVO ===== */
 .header-container {
-  background: var(--gradient-primary);
-  border: none;
-  box-shadow: var(--shadow-lg);
-  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  box-shadow: var(--shadow);
   position: sticky;
   top: 0;
   z-index: 1000;
-  transition: var(--transition-normal);
-}
-
-.header-container:hover {
-  box-shadow: var(--shadow-xl);
-}
-
-.header-container .navbar {
-  padding: var(--spacing-md) 0;
-}
-
-.header-container .navbar-brand {
-  display: flex;
-  align-items: center;
-  transition: var(--transition-fast);
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--radius-lg);
 }
 
 .header-container .navbar-brand:hover {
-  background: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
-}
-
-.header-logo {
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-  transition: var(--transition-fast);
-}
-
-.header-container .navbar-brand:hover .header-logo {
-  transform: scale(1.1) rotate(5deg);
+  transition: transform 0.2s;
 }
 
 .header-title {
-  background: linear-gradient(45deg, #ffffff, #e2e8f0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: white;
   font-weight: 700;
   font-size: 1.75rem;
   margin: 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Navegación mejorada */
 .header-container .nav-link {
-  color: var(--text-white) !important;
+  color: white !important;
   font-weight: 500;
-  padding: var(--spacing-sm) var(--spacing-md) !important;
-  margin: 0 var(--spacing-xs);
-  border-radius: var(--radius-md);
-  transition: var(--transition-fast);
-  position: relative;
-  overflow: hidden;
-}
-
-.header-container .nav-link::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: var(--transition-normal);
-}
-
-.header-container .nav-link:hover::before {
-  left: 100%;
+  padding: 0.5rem 1rem !important;
+  border-radius: var(--radius);
+  transition: background 0.2s;
 }
 
 .header-container .nav-link:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.header-container .nav-link:active {
-  transform: translateY(0);
-}
-
-/* Toggle button mejorado */
-.header-container .navbar-toggler {
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-sm);
-  transition: var(--transition-fast);
-}
-
-.header-container .navbar-toggler:hover {
   background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
 }
 
-.header-container .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
-
-
-/* ===== SIDEBAR COMPONENT ===== */
-.sidebar-component {
-  background: linear-gradient(180deg, var(--bg-dark) 0%, #1e293b 100%);
-  color: var(--text-white);
-  box-shadow: var(--shadow-lg);
-  border-radius: var(--radius-lg);
-  transition: var(--transition-normal);
-  display: flex;
-  flex-direction: column;
-  padding: var(--spacing-sm); 
-  height: 100%; 
-}
-
-/* Sidebar header con botón toggle */
-.sidebar-header {
-  display: flex;
-  justify-content: flex-end;
-  padding: var(--spacing-sm); /* Espaciado solo para el toggle */
-}
-
-.sidebar-toggle {
-  background: transparent;
-  border: none;
-  font-size: 2rem;
-  color: var(--text-white);
-  cursor: pointer;
-}
-
-/* Menu de navegación */
-.sidebar-menu {
-  list-style: none;
-  padding-left: 0;
-  margin-top: var(--spacing-md);
-}
-
-.sidebar-item {
-  margin-bottom: var(--spacing-md);
-}
-
-.sidebar-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: var(--text-white);
-  font-size: 1.125rem;
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--radius-md);
-  transition: var(--transition-fast);
-}
-
-.sidebar-link:hover {
-  background-color: var(--bg-hover);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-.sidebar-link.active {
-  background-color: var(--gradient-primary);
-  color: var(--text-white);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Footer del sidebar */
-.sidebar-footer {
-  margin-top: auto;
-  text-align: center;
-  padding: var(--spacing-md);
-  font-size: 0.875rem;
-  color: var(--text-muted);
-}
-
-/* Sidebar móvil */
-@media (max-width: 768px) {
-  .sidebar-component {
-    width: 250px;
-    position: fixed;
-    top: 0;
-    left: -100%;
-    height: 100%;
-    transition: transform 0.3s ease;
-  }
-
-  .sidebar-component.open {
-    transform: translateX(100%);
-  }
-
-  .sidebar-menu {
-    display: none;
-  }
-
-  .sidebar-menu.open {
-    display: block;
-  }
-
-  .sidebar-toggle {
-    background: transparent;
-    border: none;
-    font-size: 2rem;
-    color: var(--text-white);
-    cursor: pointer;
-  }
-}
-
-
-/* ===== HOME PAGE COMPONENTS ===== */
+/* ===== HOME PAGE LIMPIO ===== */
 .home-hero {
-  background: var(--gradient-hero);
-  padding: var(--spacing-2xl) 0;
-  margin-bottom: var(--spacing-2xl);
-  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, var(--primary), #8b5cf6);
+  padding: 4rem 0;
+  margin-bottom: 2rem;
+  border-radius: var(--radius);
   text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.home-hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-  pointer-events: none;
+  color: white;
 }
 
 .home-hero h1 {
-  color: var(--text-white);
   font-size: 3rem;
   font-weight: 700;
-  margin-bottom: var(--spacing-lg);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  position: relative;
-  z-index: 1;
+  margin-bottom: var(--spacing);
 }
 
 .home-hero p {
-  color: rgba(255, 255, 255, 0.9);
   font-size: 1.25rem;
-  margin-bottom: var(--spacing-xl);
-  position: relative;
-  z-index: 1;
+  opacity: 0.9;
 }
 
-/* Cards de cursos mejoradas */
+/* ===== CARDS DE CURSOS EFECTIVAS ===== */
 .courses-container {
-  background: var(--bg-card);
-  border-radius: var(--radius-xl);
-  padding: var(--spacing-xl);
-  box-shadow: var(--shadow-md);
-  margin-bottom: var(--spacing-xl);
+  background: var(--bg-white);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
 }
 
 .courses-title {
-  color: var(--text-primary);
+  color: var(--text-dark);
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: 2rem;
   text-align: center;
-  position: relative;
-}
-
-.courses-title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: var(--gradient-primary);
-  border-radius: var(--radius-sm);
 }
 
 .course-card {
-  background: var(--bg-card);
+  background: var(--bg-white);
   border: 1px solid #e2e8f0;
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
-  margin-bottom: var(--spacing-md);
-  transition: var(--transition-normal);
-  position: relative;
-  overflow: hidden;
-}
-
-.course-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--gradient-primary);
-  transform: scaleY(0);
-  transition: var(--transition-normal);
-  transform-origin: bottom;
-}
-
-.course-card:hover::before {
-  transform: scaleY(1);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: var(--spacing);
+  transition: all 0.2s;
 }
 
 .course-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--primary-blue-light);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary);
 }
 
 .course-card a {
-  display: block;
-  color: var(--text-primary);
-  font-weight: 500;
-  transition: var(--transition-fast);
   text-decoration: none;
-}
-
-.course-card:hover a {
-  color: var(--primary-blue);
-  padding-left: var(--spacing-md);
+  color: inherit;
 }
 
 .course-id {
-  color: var(--primary-blue);
+  color: var(--primary);
   font-weight: 600;
   font-size: 0.875rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 .course-subject {
-  color: var(--text-primary);
+  color: var(--text-dark);
   font-weight: 600;
   font-size: 1.125rem;
-  margin: var(--spacing-xs) 0;
+  margin: 0.5rem 0;
 }
 
 .course-professor {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
+  color: var(--text-gray);
   font-style: italic;
 }
 
-/* Estado vacío mejorado */
+/* ===== ESTADO VACÍO ===== */
 .empty-state {
   text-align: center;
-  padding: var(--spacing-2xl);
-  background: var(--bg-card);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-md);
+  padding: 3rem;
+  color: var(--text-gray);
 }
 
 .empty-state-icon {
   font-size: 4rem;
-  color: var(--text-muted);
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing);
 }
 
-.empty-state h3 {
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-md);
-}
-
-.empty-state p {
-  color: var(--text-secondary);
-  font-size: 1.125rem;
-}
-
-/* Animaciones de carga */
+/* ===== LOADING SIMPLE ===== */
 .loading-skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #f0f0f0, #e0e0e0, #f0f0f0);
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
-  border-radius: var(--radius-md);
-  height: 60px;
-  margin-bottom: var(--spacing-md);
+  border-radius: var(--radius);
+  height: 80px;
+  margin-bottom: var(--spacing);
 }
 
 @keyframes loading {
@@ -388,21 +134,88 @@
   100% { background-position: -200% 0; }
 }
 
-/* Responsive design mejorado */
+/* Navegación del curso - limpia sin backgrounds */
+.course-nav-link {
+  color: var(--text-gray) !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.25rem;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.course-nav-link:hover {
+  color: var(--primary-hover) !important;
+  background: transparent !important;
+}
+
+/* Estado activo con subrayado */
+.course-nav-link.active {
+  color: var(--primary) !important;
+  background: transparent !important;
+  font-weight: 500;
+}
+
+.course-nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+  right: 1rem;
+  height: 2px;
+  background: var(--primary);
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .home-hero h1 {
-    font-size: 2rem;
+  .course-nav-link {
+    padding: 0.5rem 0.75rem;
   }
-  
-  .home-hero p {
-    font-size: 1rem;
-  }
-  
-  .courses-title {
-    font-size: 2rem;
-  }
-  
-  .course-card {
-    padding: var(--spacing-md);
-  }
+  .home-hero h1 { font-size: 2rem; }
+  .home-hero p { font-size: 1rem; }
+  .courses-title { font-size: 2rem; }
+}
+
+.accordion-item {
+  border: none !important;
+  border-top: 3.4px solid var(--primary-muted) !important;
+  background: var(--bg-white);
+  transition: border-color 0.2s ease;
+}
+
+/* Cuando el accordion está abierto (tiene .show) */
+.accordion-item:hover, .accordion-item:has(.accordion-collapse.show) {
+  border-top-color: var(--primary) !important;
+}
+
+/* Accordion Button - Sobrescribir estilos de Bootstrap */
+.accordion-button {
+  background-color: var(--bg-white) !important;
+  color: var(--text-dark) !important;
+  border: none !important;
+  font-weight: 500;
+  padding: 1.25rem 1rem;
+}
+
+.accordion-button:not(.collapsed) {
+  /*background-color: var(--bg-gray) !important;*/
+  color: var(--primary) !important;
+  box-shadow: none !important;
+}
+
+.accordion-button:focus {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.accordion-button:hover {
+  color: var(--primary-hover) !important;
+}
+
+/* Accordion Body */
+.accordion-body {
+  background-color: var(--bg-white);
+  border-top: 1px solid #e2e8f0;
 }

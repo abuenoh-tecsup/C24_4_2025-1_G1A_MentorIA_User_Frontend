@@ -64,7 +64,7 @@ function ForumDetailPage() {
       <div className="row h-100">
         <CourseSidebar courseId={courseId} />
 
-        <main className="col-md-10 p-4">
+        <main className="col-md-9 p-4">
           {/* Header */}
           <header className="d-flex justify-content-between align-items-center mb-4">
             <h3 className="mb-0">{forum.title}</h3>
@@ -91,7 +91,7 @@ function ForumDetailPage() {
           </header>
 
           {/* Info del foro */}
-          <section className="bg-white border p-4 rounded mb-4">
+          <section className="bg-white basic-border p-4 mb-4">
             <h5>Descripción</h5>
             <p>{forum.description}</p>
 
@@ -116,7 +116,7 @@ function ForumDetailPage() {
           </section>
 
           {/* Comentario usuario */}
-          <section className="bg-white border p-4 rounded mb-4">
+          <section className="bg-white basic-border p-4 mb-4">
             <div className="d-flex justify-content-between align-items-center mb-3">
               <h5 className="mb-0">Responder</h5>
               <button
@@ -147,7 +147,7 @@ function ForumDetailPage() {
           </section>
 
           {/* Lista de respuestas */}
-          <section className="bg-white border p-4 rounded mb-4">
+          <section className="bg-white basic-border p-4 mb-4">
             <h5 className="mb-3">Respuestas</h5>
             {comments.length === 0 ? (
               <p className="text-muted">Este foro aún no tiene respuestas.</p>

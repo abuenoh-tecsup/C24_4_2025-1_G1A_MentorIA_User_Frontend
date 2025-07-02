@@ -22,9 +22,12 @@ function MaterialPage() {
     <div className="container-fluid h-100">
       <div className="row h-100">
         <CourseSidebar courseId={courseId} />
-        <section className="col-md-10 p-3">
+        <section className="col-md-9 p-3">
           <div className="d-flex justify-content-between align-items-center mb-4">
-            <h2 className="m-0">Materiales del Curso</h2>
+            <h2 className="m-0">
+              <i class="bi bi-paperclip pe-2"></i>
+              Materiales del Curso
+            </h2>
             <AddDropdown courseId={courseId} />
           </div>
 

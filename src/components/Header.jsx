@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/auth.store";
 
 function Header() {
-  const { token, logout, username } = useAuthStore();
+  const { token, logout, user } = useAuthStore();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -11,60 +11,98 @@ function Header() {
   };
 
   return (
-    <header className="header-container">
-      <nav className="navbar navbar-expand-lg">
-        <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+    <header className="header-container text-white">
+      <nav className="navbar navbar-expand-lg navbar-dark flex-lg-column align-items-start p-3 p-lg-0 h-lg-100">
+        {/* Logo y toggle button */}
+        <div className="d-flex w-100 justify-content-between align-items-center mb-lg-4">
+          <Link
+            className="navbar-brand d-flex flex-column align-items-center text-decoration-none m-0"
+            to="/home"
+          >
             <img
               src="/favicon.ico"
               alt="Logo"
-              height="24"
-              className="header-logo me-3 transform-scale-2"
+              className="img-fluid"
+              style={{ maxHeight: "40px", maxWidth: "100%" }}
             />
-            <h2 className="header-title d-inline-block">MentorIA</h2>
+            <span className="fs-6 fw-bold d-none d-lg-inline text-white text-center pt-2">
+              MentorIA
+            </span>
           </Link>
-
           <button
-            className="navbar-toggler"
+            className="navbar-toggler d-lg-none border-0"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navbar"
-            aria-controls="navbar"
+            data-bs-target="#navbarContent"
+            aria-controls="navbarContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
+        </div>
 
-          <div className="collapse navbar-collapse" id="navbar">
-            <div className="navbar-nav ms-auto">
-              <Link className="nav-link" to="/home">
-                🏠 Home
+        {/* Navigation items */}
+        <div
+          className="collapse navbar-collapse w-100 flex-grow-1"
+          id="navbarContent"
+        >
+          <ul className="navbar-nav flex-column w-100">
+            <li className="nav-item">
+              <Link
+                className="nav-link d-flex flex-column align-items-center gap-2 px-3 py-2 hover-bg-light m-0"
+                to="/home"
+              >
+                <span className="">🏠</span>
+                <span>Home</span>
               </Link>
-              <Link className="nav-link" to="/items">
-                📋 Items
+            </li>
+            <li className="nav-item">
+              <Link
+                className="nav-link d-flex flex-column align-items-center gap-2 px-3 py-2 hover-bg-light m-0"
+                to="/items"
+              >
+                <span>📋</span>
+                <span>Items</span>
               </Link>
-              <Link className="nav-link" to="/contact">
-                📞 Contact
+            </li>
+            <li className="nav-item">
+              <Link
+                className="nav-link d-flex flex-column align-items-center gap-2 px-3 py-2 hover-bg-light m-0"
+                to="/contact"
+              >
+                <span>📞</span>
+                <span>Contact</span>
               </Link>
+            </li>
 
+            {/* Separador y sección de usuario */}
+            <li className="nav-item mt-auto pt-5 border-top border-secondary">
               {token ? (
-                <>
-                  <span className="nav-link disabled">👤 {username}</span>
+                <div className="d-flex flex-column gap-1">
+                  <div className="nav-link d-flex flex-column align-items-center gap-2 px-3 py-2 text-white-50">
+                    <span>👤</span>
+                    <span className="">{user.username}</span>
+                  </div>
                   <button
-                    className="nav-link btn btn-link"
+                    className="nav-link btn btn-link text-start text-white d-flex flex-column align-items-center gap-2 px-3 py-2 rounded hover-bg-light border-0"
                     onClick={handleLogout}
                   >
-                    🔓 Logout
+                    <span>🔓</span>
+                    <span>Logout</span>
                   </button>
-                </>
+                </div>
               ) : (
-                <Link className="nav-link" to="/login">
-                  🔐 Login
+                <Link
+                  className="nav-link d-flex align-items-center gap-2 px-3 py-2 rounded hover-bg-light"
+                  to="/login"
+                >
+                  <span>🔐</span>
+                  <span>Login</span>
                 </Link>
               )}
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </nav>
     </header>

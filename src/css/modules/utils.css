@@ -325,3 +325,14 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.border-top-item{
+  border-top: 3.4px solid var(--primary-muted) !important;
+  transition: border-color 0.2s ease;
+}
+.border-top-item:hover{
+  border-top-color: var(--primary) !important;
+}
+.basic-border{
+  border: 1px solid rgba(0, 0, 0, 0.175);
+}

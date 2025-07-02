@@ -51,7 +51,7 @@ function SubmissionDetailPage() {
       <div className="row h-100">
         <CourseSidebar courseId={submission.task.module.course.id} />
 
-        <main className="col-md-10 p-4">
+        <main className="col-md-9 p-4">
           <header className="d-flex justify-content-between align-items-center mb-4">
             <h3 className="mb-0">Calificar Entrega</h3>
             <button className="btn btn-secondary" onClick={() => navigate(-1)}>

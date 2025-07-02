@@ -19,6 +19,8 @@ import TaskDetailPage from "./pages/TaskDetailPage";
 import SubmissionDetailPage from "./pages/SubmissionDetailPage";
 import LoginPage from "./pages/LoginPage";
 import RequireAuth from "./utils/PrivateRoute";
+import GeneratedContentDetailPage from "./pages/GeneratedContentDetailPage";
+
 
 function App() {
   return (
@@ -37,6 +39,7 @@ function App() {
             <Route index element={<MaterialPage />} />
             <Route path="form" element={<MaterialFormPage />} />
             <Route path=":materialId" element={<MaterialDetailPage />} />
+            <Route path=":materialId/generated/:generatedId" element={<GeneratedContentDetailPage />} />
           </Route>
           <Route path="courses/:courseId/tasks">
             <Route index element={<TaskPage />} />

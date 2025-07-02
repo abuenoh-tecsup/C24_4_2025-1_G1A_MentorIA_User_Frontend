@@ -22,9 +22,12 @@ function ForumPage() {
     <div className="container-fluid h-100">
       <div className="row h-100">
         <CourseSidebar courseId={courseId} />
-        <section className="col-md-10 p-3">
+        <section className="col-md-9 p-3">
           <div className="d-flex justify-content-between align-items-center mb-4">
-            <h2 className="m-0">Foros del Curso</h2>
+            <h2 className="m-0">
+              <i class="bi bi-chat-fill pe-2"></i>
+              Foros del Curso
+            </h2>
             <AddDropdown courseId={courseId} />
           </div>
 

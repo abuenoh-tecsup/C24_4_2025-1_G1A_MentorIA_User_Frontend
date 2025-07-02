@@ -27,7 +27,7 @@ function HomePage() {
       {/* Hero Section */}
       <div className="home-hero animate-slide-down">
         <h1>🎓 Plataforma Educativa MentorIA</h1>
-        <p>Descubre cursos increíbles y expande tu conocimiento con los mejores profesores</p>
+        <p className="text-white">Descubre cursos increíbles y expande tu conocimiento con los mejores profesores</p>
       </div>
 
       {/* Courses Section */}
