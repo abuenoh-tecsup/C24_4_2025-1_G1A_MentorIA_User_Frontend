@@ -26,8 +26,8 @@ function HomePage() {
     <div className="main-container animate-fade-in">
       {/* Hero Section */}
       <div className="home-hero animate-slide-down p-5 background-gradient-1">
-        <h1>
-          <i class="bi bi-mortarboard-fill me-2"></i>
+        <h1 className="text-white">
+          <i className="bi bi-mortarboard-fill me-2"></i>
           Plataforma Educativa MentorIA
         </h1>
         <p className="text-white">
@@ -72,10 +72,10 @@ function HomePage() {
                   >
                     <div className="course-id">ID: {course.id}</div>
                     <div className="course-subject">
-                      <i class="bi bi-book-fill me-2"></i> {course.subject?.name || "Sin nombre"}
+                      <i className="bi bi-book-fill me-2"></i> {course.subject?.name || "Sin nombre"}
                     </div>
                     <div className="course-professor">
-                      <i class="bi bi-person-workspace me-2"></i> {course.professor?.username || "Sin profesor asignado"}
+                      <i className="bi bi-person-workspace me-2"></i> {course.professor?.username || "Sin profesor asignado"}
                     </div>
                   </Link>
                 </div>
