@@ -20,6 +20,7 @@ import SubmissionDetailPage from "./pages/SubmissionDetailPage";
 import LoginPage from "./pages/LoginPage";
 import RequireAuth from "./utils/PrivateRoute";
 import GeneratedContentDetailPage from "./pages/GeneratedContentDetailPage";
+import ContactPage from "./pages/ContactPage";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
       <Route element={<RequireAuth/>}>
         <Route path="/" element={<Layout />}>
           <Route path="home" element={<HomePage />} />
+          <Route path="contact" element={<ContactPage />} />
           <Route path="submissions/:submissionId" element={<SubmissionDetailPage />} />
           <Route path="courses/:courseId" element={<CoursePage />} />
           <Route path="courses/:courseId/modules">
