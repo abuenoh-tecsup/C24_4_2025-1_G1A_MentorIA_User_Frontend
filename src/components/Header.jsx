@@ -42,11 +42,6 @@ function Header() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/items">
-                  <i className="bi bi-card-checklist me-1"></i>Items
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link className="nav-link" to="/contact">
                   <i className="bi bi-telephone-fill me-1"></i>Contact
                 </Link>
@@ -105,15 +100,6 @@ function Header() {
             >
               <i className="bi bi-house-fill me-3"></i>
               <span>Home</span>
-            </Link>
-          </li>
-          <li className="nav-item mb-2">
-            <Link
-              className="nav-link text-white d-flex align-items-center"
-              to="/items"
-            >
-              <i className="bi bi-card-checklist me-3"></i>
-              <span>Items</span>
             </Link>
           </li>
           <li className="nav-item mb-2">
